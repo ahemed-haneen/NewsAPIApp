@@ -1,11 +1,22 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import axios from 'axios'
+
+const VITE_NEWS_API_KEY = import.meta.env.VITE_NEWS_API_KEY
 
 function App() {
-  const [count, setCount] = useState(0)
 
+  const [news, setNews] = useState()
+
+  
+
+  useEffect(() => {
+    axios.get('https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=' + VITE_NEWS_API_KEY)
+    .then(response => setNews(response.data.articles))
+  },[])
+  
   return (
     <>
       <div>
@@ -18,9 +29,6 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
