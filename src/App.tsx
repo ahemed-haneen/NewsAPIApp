@@ -10,7 +10,7 @@ function App() {
       </header>
       <Routes>
       <Route path="/" element={
-        <main className="h-full overflow-hidden">
+        <main className="h-full overflow-y-scroll">
           <BlogPosts />
         </main>
       } />
